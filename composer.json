@@ -1,5 +1,5 @@
 {
-    "name": "wandi/easyadmin-plus-bundle",
+    "name": "rivomanana/easyadmin-plus-bundle",
     "type": "symfony-bundle",
     "description": "Wandi/EasyAdminPlusBundle",
     "keywords": [
@@ -33,7 +33,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",
-        "easycorp/easyadmin-bundle": "^2.0.0"
+        "easycorp/easyadmin-bundle": "^2.3"
     },
     "require-dev": {
     },
