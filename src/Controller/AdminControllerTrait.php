@@ -25,15 +25,18 @@ trait AdminControllerTrait
         // it'll be ok and redirect on the correct action instead of raw "list"
 
         // if the first entity have a higher role, take the first one which matchs
-        if (!$this->get('wandi.easy_admin_plus.acl.security.admin_authorization_checker')->isEasyAdminGranted($this->config['entities'][$homepageConfig['params']['entity']], 'list')) {
-            foreach ($this->config['entities'] as $entityName => $entityInfo) {
-                if ($this->get('wandi.easy_admin_plus.acl.security.admin_authorization_checker')->isEasyAdminGranted($entityInfo, 'list') &&
-                    !in_array('list', $entityInfo['disabled_actions'])) {
-                    $this->config['homepage']['params']['entity'] = $entityName;
-                    break;
+        if ( isset( $homepageConfig['entity'] ) ){
+             if (!$this->get('wandi.easy_admin_plus.acl.security.admin_authorization_checker')->isEasyAdminGranted($this->config['entities'][$homepageConfig['params']['entity']], 'list')) {
+                foreach ($this->config['entities'] as $entityName => $entityInfo) {
+                    if ($this->get('wandi.easy_admin_plus.acl.security.admin_authorization_checker')->isEasyAdminGranted($entityInfo, 'list') &&
+                        !in_array('list', $entityInfo['disabled_actions'])) {
+                        $this->config['homepage']['params']['entity'] = $entityName;
+                        break;
+                    }
                 }
             }
         }
+       
 
         return parent::redirectToBackendHomepage();
     }
